@@ -219,10 +219,11 @@
                 <div class="container">
                 <div class="row">
     <div class="col-sm-6">
-  <form action="" method="post">
+  <form action="" method="post"  enctype="multipart/form-data">
     <div class="form-group">
       <label for="email">Name:</label>
       <input type="text" class="form-control" placeholder="Name" name="name">
+      <?php echo form_error('name'); ?>
     </div>
     <div class="form-group">
       <label for="pwd">Image:</label>

@@ -1178,7 +1178,20 @@ class admin extends CI_Controller{
             $data=array();
              if($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='Admin')
              {
-                 $this->load->view('admin_banner_creation',$data);
+                    $this->form_validation->set_rules('name', 'Name', 'required');
+                    $this->form_validation->set_rules('password', 'Password', 'required');
+                    $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
+                    $this->form_validation->set_rules('email', 'Email', 'required');
+
+                    if ($this->form_validation->run() == FALSE)
+                    {
+                        //$this->load->view('myform');
+                    }
+                    else
+                    {
+                        //$this->load->view('formsuccess');
+                    }
+                     $this->load->view('admin_banner_creation',$data);
              }
              else if ($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='User') 
              {
