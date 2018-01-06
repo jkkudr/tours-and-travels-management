@@ -97,7 +97,6 @@ class admin extends CI_Controller{
     }
     
     
-    
      /*===========================================================================================*/
     /*===========================================================================================*/
     public function user_list()
@@ -1170,4 +1169,27 @@ class admin extends CI_Controller{
             $this->load->view('login',$error);
     }
         }
+        /*================================================*/
+        /*================================================*/
+        /*Banner Creation Controller*/
+
+        function banners()
+        {
+            $data=array();
+             if($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='Admin')
+             {
+                 $this->load->view('admin_banner_creation',$data);
+             }
+             else if ($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='User') 
+             {
+                redirect('user/dashboard');
+             }
+             else
+             {
+                $error['error']='!!You dont have persmission, please log in!!';
+                $this->load->view('login',$error);
+             }
+        }
+        /*=================================================*/
+        /*==================================================*/
 }
