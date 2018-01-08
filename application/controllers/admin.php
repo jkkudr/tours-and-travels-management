@@ -1176,20 +1176,32 @@ class admin extends CI_Controller{
         function banners()
         {
             $data=array();
+            $this->load->model('banner');
+            $data['image_error']="";
              if($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='Admin')
              {
                     $this->form_validation->set_rules('name', 'Name', 'required');
-                    $this->form_validation->set_rules('password', 'Password', 'required');
-                    $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
-                    $this->form_validation->set_rules('email', 'Email', 'required');
-
                     if ($this->form_validation->run() == FALSE)
                     {
-                        //$this->load->view('myform');
+                        
                     }
                     else
                     {
-                        //$this->load->view('formsuccess');
+                        $name=$this->db->escape_str($this->input->post('name'));
+                        $link=$this->db->escape_str($this->input->post('link'));
+                        $sort_order=$this->db->escape_str($this->input->post('sort_order'));
+                        $types = array('image/jpeg', 'image/gif', 'image/png','image/jpg');
+                        if (!in_array($_FILES['image']['type'], $types)) 
+                        {
+                            $data['image_error']="Upload valid image";
+                        } 
+                        else 
+                        {
+                            $image_name=rand(0,1000).$_FILES['image']['name'];
+                            move_uploaded_file($_FILES['image']['tmp_name'],"./banners/".$image_name);
+                            $data1=array('id'=>'','name'=>$name,'banner_image'=>$image_name,'link'=>$link,'sort_order'=>$sort_order);
+                            $this->banner->banner_insert($data1);
+                        } 
                     }
                      $this->load->view('admin_banner_creation',$data);
              }

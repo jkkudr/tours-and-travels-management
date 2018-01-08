@@ -222,20 +222,21 @@
   <form action="" method="post"  enctype="multipart/form-data">
     <div class="form-group">
       <label for="email">Name:</label>
-      <input type="text" class="form-control" placeholder="Name" name="name">
+      <input type="text" class="form-control" placeholder="Name" name="name" value="<?php echo set_value('name'); ?>">
       <?php echo form_error('name'); ?>
     </div>
     <div class="form-group">
       <label for="pwd">Image:</label>
-      <input type="file" class="form-control" id="pwd" placeholder="Image" name="image">
+      <input type="file" class="form-control" id="" placeholder="Image" name="image">
+      <?php echo $image_error; ?>
     </div>
     <div class="form-group">
       <label for="pwd">Link:</label>
-      <input type="text" class="form-control" id="pwd" placeholder="Link" name="link">
+      <input type="text" class="form-control" id="" placeholder="Link" name="link" value="<?php echo set_value('link'); ?>">
     </div>
     <div class="form-group">
       <label for="pwd">Sort order:</label>
-      <input type="number" class="form-control" id="pwd" placeholder="Sort Order" name="sort_order">
+      <input type="number" class="form-control" id="" placeholder="Sort Order" name="sort_order" value="<?php echo set_value('sort_order'); ?>">
     </div>
     <button type="submit" class="btn btn-default" name="create_banner">Submit</button>
   </form>
