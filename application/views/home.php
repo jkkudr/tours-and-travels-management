@@ -92,34 +92,48 @@
     <header id="myCarousel" class="carousel slide">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
+        <?php
+        $i=1;
+         foreach ($bannerslist as $key => $value) {
+           ?>
+           <li data-target="#myCarousel" data-slide-to="<?php echo $i; ?>" class="<?php if($i==1) { ?>active <?php } ?>"></li>
+           <?php 
+           $i++;
+         }
+        ?>
         </ol>
 
         <!-- Wrapper for Slides -->
         <div class="carousel-inner">
-            <div class="item active">
+        <?php
+         $i=1;        
+        foreach ($bannerslist as $key => $value) {
+        ?>
+            <div class="item <?php if($i==1){ ?> active<?php } ?>">
                 <!-- Set the first background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('<?php echo base_url();?>image/IMG_8485.JPG');"></div>
+                <div class="fill" style="background-image:url('<?php echo base_url();?>banners/<?php echo $value->banner_image; ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>Nilgiri</h2>
+                    <h2><?php echo $value->name; ?></h2>
                 </div>
             </div>
-            <div class="item">
+            <?php
+            $i++;
+           }
+            ?>
+            <!-- <div class="item"> -->
                 <!-- Set the second background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('<?php echo base_url();?>image/rainy_1.jpg');"></div>
+                <!-- <div class="fill" style="background-image:url('<?php echo base_url();?>image/rainy_1.jpg');"></div>
                 <div class="carousel-caption">
                     <h2>Waterfall</h2>
                 </div>
             </div>
-            <div class="item">
+            <div class="item"> -->
                 <!-- Set the third background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('<?php echo base_url();?>image/IMG_8641.JPG');"></div>
+                <!-- <div class="fill" style="background-image:url('<?php echo base_url();?>image/IMG_8641.JPG');"></div>
                 <div class="carousel-caption">
                     <h2>Cloudy Sky</h2>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- Controls -->

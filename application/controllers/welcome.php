@@ -18,6 +18,7 @@ class Welcome extends CI_Controller {
         //$this->load->model('admin_package_model');
             $config=array();
             $config['base_url']=  base_url('welcome/index');
+            $this->load->model('banner');
             $config['total_rows']=  $this->base_model->count_user();
             $config['per_page']=2;
             $config['num_links']=3;
@@ -42,6 +43,7 @@ class Welcome extends CI_Controller {
             $this->pagination->initialize($config);
             $data['user']=  $this->base_model->fetch_user($config['per_page'],  $this->uri->segment(3)); 
 //        $data['user']=$this->admin_user_list_model->get_user();
+            $data['bannerslist']=$this->banner->getbanners();
             $data['links'] = $this->pagination->create_links();
            $this->load->view('home',$data);
             
