@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2018 at 12:11 PM
+-- Generation Time: Jan 08, 2018 at 07:24 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -33,6 +33,14 @@ CREATE TABLE `banners` (
   `link` text NOT NULL,
   `sort_order` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `banners`
+--
+
+INSERT INTO `banners` (`id`, `name`, `banner_image`, `link`, `sort_order`) VALUES
+(3, 'sfdsf', '9857958e147f9a2366.jpg', '', 0),
+(5, 'sdfsd', '8077958e147f9a2366.jpg', '', 0);
 
 -- --------------------------------------------------------
 
@@ -391,7 +399,7 @@ ALTER TABLE `tbl_userdata`
 -- AUTO_INCREMENT for table `banners`
 --
 ALTER TABLE `banners`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `payments`
 --
