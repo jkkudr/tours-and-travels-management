@@ -1205,6 +1205,7 @@ class admin extends CI_Controller{
                             redirect('admin/banners');
                         } 
                     }
+                    $data['bannerslist']=$this->banner->getbanners();
                      $this->load->view('admin_banner_creation',$data);
              }
              else if ($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='User') 
@@ -1219,4 +1220,19 @@ class admin extends CI_Controller{
         }
         /*=================================================*/
         /*==================================================*/
+        function banner_delete()
+        {
+            $this->load->model('banner');
+            if($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='Admin')
+            {
+                $ids=$this->uri->segment(3);
+                $this->banner->deletebanner($ids);
+                redirect('admin/banners');
+            }
+            else
+            {
+                $error['error']='!!You dont have persmission, please log in!!';
+                $this->load->view('login',$error);
+            }
+        }
 }

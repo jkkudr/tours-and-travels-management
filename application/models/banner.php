@@ -13,4 +13,19 @@ class banner extends CI_Model {
 				return TRUE;
 			}
 	    }
+	    public function getbanners()
+	    {
+	    	$query=$this->db->query("SELECT * FROM `banners` ORDER BY sort_order");
+	    	$data=array();
+	    	foreach ($query->result() as $key=> $row)
+			{
+				$data[$key]=$row;
+			}
+			return $data;
+		}
+		public function deletebanner($id)
+	    {
+	    	$query=$this->db->query("delete FROM `banners` where id='$id'");
+	    	 return TRUE;
+		}
 	}

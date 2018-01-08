@@ -248,7 +248,39 @@
   </div>
   </div>
 </div>
-
+<br>
+<div class="bs-example">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Slno.</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Link</th>
+                <th>Sort Order</th>
+                <th>#</th> 
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        $i=1;
+        foreach ($bannerslist as $key => $value) 
+        {
+        ?>
+            <tr>
+                <td><?php echo $i; ?></td>
+                <td><?php echo $value->name; ?></td>
+                <td><img src="<?php echo base_url(); ?>/banners/<?php echo $value->banner_image; ?>"  width="100" height="100">  </td>
+                <td><?php echo $value->link; ?></td>
+                <td><?php echo $value->sort_order; ?></td>
+                <td><a href="banner_delete/<?php echo $value->id; ?>" onclick="return confirm('Are You Sure');">Delete</a></td>
+            </tr>
+            <?php
+            $i++;
+          }
+            ?>
+        </tbody>
+    </table>
                 <!-- /.row -->
 
                
