@@ -1201,6 +1201,8 @@ class admin extends CI_Controller{
                             move_uploaded_file($_FILES['image']['tmp_name'],"./banners/".$image_name);
                             $data1=array('id'=>'','name'=>$name,'banner_image'=>$image_name,'link'=>$link,'sort_order'=>$sort_order);
                             $this->banner->banner_insert($data1);
+                            $this->session->set_flashdata('message', 'Banner uploaded Successfully');
+                            redirect('admin/banners');
                         } 
                     }
                      $this->load->view('admin_banner_creation',$data);

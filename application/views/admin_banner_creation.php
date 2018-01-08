@@ -239,6 +239,11 @@
       <input type="number" class="form-control" id="" placeholder="Sort Order" name="sort_order" value="<?php echo set_value('sort_order'); ?>">
     </div>
     <button type="submit" class="btn btn-default" name="create_banner">Submit</button>
+    <div style="color:green;">
+    <?php
+     echo  $this->session->flashdata('message');
+    ?>
+    </div>
   </form>
   </div>
   </div>
