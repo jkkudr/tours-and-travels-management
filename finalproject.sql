@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2018 at 08:25 AM
+-- Generation Time: Jan 09, 2018 at 08:43 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -334,6 +334,13 @@ CREATE TABLE `tlb_packages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `tlb_packages`
+--
+
+INSERT INTO `tlb_packages` (`id`, `package_name`, `package_details`, `locations`, `days`, `pic1`, `pic2`, `pic3`, `pic4`) VALUES
+(1, 'Test1', 'Test', 'Kochi', '2', '424book-library-background-e1412161385388-1024x526.jpg', '765dem1.png', '773IMG_8485.JPG', '138IMG_8641.JPG');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -483,7 +490,7 @@ ALTER TABLE `tbl_userdata`
 -- AUTO_INCREMENT for table `tlb_packages`
 --
 ALTER TABLE `tlb_packages`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
