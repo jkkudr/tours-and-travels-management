@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2018 at 07:24 AM
+-- Generation Time: Jan 09, 2018 at 08:25 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -315,6 +315,24 @@ INSERT INTO `tbl_userdata` (`uid`, `Firstname`, `Lastname`, `Email`, `Password`,
 (8, 'arafat', 'jahan', 'arafatjahan@gmail.com', '12345678', '01670899277', 'rampur,feni', 'Male', 'User', 1),
 (12, 'shlibu ', 'nazmul', 'shiplu@gmail.com', '12345678', '01670899277', 'kazipara,mirpur', 'Male', 'User', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tlb_packages`
+--
+
+CREATE TABLE `tlb_packages` (
+  `id` bigint(20) NOT NULL,
+  `package_name` varchar(100) NOT NULL,
+  `package_details` text NOT NULL,
+  `locations` text NOT NULL,
+  `days` varchar(100) NOT NULL,
+  `pic1` varchar(100) NOT NULL,
+  `pic2` varchar(100) NOT NULL,
+  `pic3` varchar(100) NOT NULL,
+  `pic4` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -392,6 +410,12 @@ ALTER TABLE `tbl_userdata`
   ADD PRIMARY KEY (`uid`);
 
 --
+-- Indexes for table `tlb_packages`
+--
+ALTER TABLE `tlb_packages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -455,6 +479,11 @@ ALTER TABLE `tbl_slider`
 --
 ALTER TABLE `tbl_userdata`
   MODIFY `uid` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `tlb_packages`
+--
+ALTER TABLE `tlb_packages`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
