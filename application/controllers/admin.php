@@ -1244,18 +1244,72 @@ class admin extends CI_Controller{
             if($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='Admin')
             {
                 $data=array();
+                $data['image_error1']="";
+                $data['image_error2']="";
+                $data['image_error3']="";
+                $data['image_error4']="";
                 $this->form_validation->set_rules('package_name', 'Package Name', 'required');
                 $this->form_validation->set_rules('package_details', 'Package Details', 'required');
                 $this->form_validation->set_rules('location', 'Location', 'required');
                 $this->form_validation->set_rules('days', 'Days', 'required');
-                $this->form_validation->set_rules('days', 'Days', 'required');
+                $this->form_validation->set_rules('image1', 'Image', 'required');
+                $this->form_validation->set_rules('image2', 'Image', 'required');
                 if ($this->form_validation->run() == FALSE)
                 {
                     
                 }
                 else
                 {
+                        $types = array('image/jpeg', 'image/gif', 'image/png','image/jpg');
+                        $error=0;
+                        if (!in_array($_FILES['image1']['type'], $types)) 
+                        {
+                            $data['image_error1']="Upload valid image";
+                            $error++;
+                        }
+                        if (!in_array($_FILES['image2']['type'], $types)) 
+                        {
+                            $data['image_error2']="Upload valid image";
+                            $error++;
+                        }
+                        if (!in_array($_FILES['image3']['type'], $types)) 
+                        {
+                            $data['image_error3']="Upload valid image";
+                            $error++;
+                        }
+                        if (!in_array($_FILES['image4']['type'], $types)) 
+                        {
+                            $data['image_error4']="Upload valid image";
+                            $error++;
+                        }
+                        if($error==0)
+                        {
+                            $image_name1="";
+                            $image_name2="";
+                            $image_name3="";
+                            $image_name4="";
+                            if($_FILES['image1']['name']!="")
+                            {
+                                $image_name1=rand(0,1000).$_FILES['image1']['name'];
+                                move_uploaded_file($_FILES['image1']['tmp_name'],"./packages/".$image_name1);
+                            }
+                            if($_FILES['image2']['name']!="")
+                            {
+                                $image_name2=rand(0,1000).$_FILES['image2']['name'];
+                                move_uploaded_file($_FILES['image2']['tmp_name'],"./packages/".$image_name1);
+                            }
+                            if($_FILES['image3']['name']!="")
+                            {
+                                $image_name3=rand(0,1000).$_FILES['image3']['name'];
+                                move_uploaded_file($_FILES['image3']['tmp_name'],"./packages/".$image_name1);
+                            }
+                            if($_FILES['image4']['name']!="")
+                            {
+                                $image_name1=rand(0,1000).$_FILES['image4']['name'];
+                                move_uploaded_file($_FILES['image4']['tmp_name'],"./packages/".$image_name1);
+                            }
 
+                        }
                 }
                 $this->load->view('admin_new_package',$data);
             }

@@ -245,22 +245,22 @@
     <div class="form-group">
       <label for="pwd">Package Picture1</label>
       <input type="file" class="form-control" id="" placeholder="Image" name="image1">
-      <?php //echo $image_error; ?>
+      <span class="error"><?php echo $image_error1; ?><?php echo form_error('image1'); ?></span>
     </div>
     <div class="form-group">
       <label for="pwd">Package Picture2</label>
       <input type="file" class="form-control" id="" placeholder="Image" name="image2">
-      <?php //echo $image_error; ?>
+       <span class="error"><?php echo $image_error2; ?><?php echo form_error('image2'); ?></span>
     </div>
     <div class="form-group">
       <label for="pwd">Package Picture3</label>
       <input type="file" class="form-control" id="" placeholder="Image" name="image3">
-      <?php //echo $image_error; ?>
+      <?php echo $image_error3; ?>
     </div>
     <div class="form-group">
       <label for="pwd">Package Picture4</label>
       <input type="file" class="form-control" id="" placeholder="Image" name="image4">
-      <?php //echo $image_error; ?>
+      <?php echo $image_error4; ?>
     </div>
     <button type="submit" class="btn btn-default" name="create_package">Submit</button>
     <div style="color:green;">
