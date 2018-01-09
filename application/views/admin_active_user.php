@@ -168,7 +168,7 @@
                         <a href="<?php echo base_url();?>admin/user_list"><i class="fa fa-fw fa-edit"></i> User List</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url().'admin/new_package';?>"><i class="fa fa-fw fa-desktop"></i>Create Package</a>
+                        <a href="<?php echo base_url().'admin/dynamic_combobox';?>"><i class="fa fa-fw fa-desktop"></i>Create Package</a>
                     </li>
                     <li>
                         <a href="<?php echo base_url().'admin/ad_new_user'?>"><i class="fa fa-fw fa-wrench"></i>New User</a>
@@ -176,7 +176,9 @@
                     <li>
                         <a href="<?php echo base_url().'admin/banners'?>"><i class="fa fa-fw fa-wrench"></i>Banner</a>
                     </li>
-                    
+                    <li>
+                        <a href="<?php echo base_url().'admin/new_package'?>"><i class="fa fa-fw fa-wrench"></i>New Package</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

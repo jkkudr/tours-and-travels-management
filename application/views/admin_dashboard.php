@@ -174,6 +174,9 @@
                    <li>
                         <a href="<?php echo base_url();?>admin/banners"><i class="fa fa-fw fa-edit"></i>Banners</a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url().'admin/new_package'?>"><i class="fa fa-fw fa-wrench"></i>New Package</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

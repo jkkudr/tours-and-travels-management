@@ -926,7 +926,6 @@ class admin extends CI_Controller{
         }
      function dynamic_combobox(){
      // retrieve the album and add to the data array
-        redirect('admin/new_package');
         $data['']= 'Names';
         $data['groups'] = $this->combobox_model->getname();
          $data['groups1'] = $this->combobox_model->getcountry();
@@ -1245,6 +1244,19 @@ class admin extends CI_Controller{
             if($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='Admin')
             {
                 $data=array();
+                $this->form_validation->set_rules('package_name', 'Package Name', 'required');
+                $this->form_validation->set_rules('package_details', 'Package Details', 'required');
+                $this->form_validation->set_rules('location', 'Location', 'required');
+                $this->form_validation->set_rules('days', 'Days', 'required');
+                $this->form_validation->set_rules('days', 'Days', 'required');
+                if ($this->form_validation->run() == FALSE)
+                {
+                    
+                }
+                else
+                {
+
+                }
                 $this->load->view('admin_new_package',$data);
             }
             else

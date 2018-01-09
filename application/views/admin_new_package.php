@@ -29,7 +29,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">ADMIN :: Banners</a>
+                <a class="navbar-brand" href="">ADMIN :: Packages</a>
             </div>
             <!-- Top Menu Items -->
            <!-- <center>
@@ -162,7 +162,9 @@
                    <li>
                         <a href="<?php echo base_url().'admin/banners'?>"><i class="fa fa-fw fa-wrench"></i>Banner</a>
                     </li>
-                    
+                    <li>
+                        <a href="<?php echo base_url().'admin/new_package'?>"><i class="fa fa-fw fa-wrench"></i>New Package</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -223,21 +225,22 @@
     <div class="form-group">
       <label for="email">Package Name:</label>
       <input type="text" class="form-control" placeholder="Name" name="package_name" value="<?php echo set_value('name'); ?>">
-      <?php echo form_error('name'); ?>
+      <span class="error"><?php echo form_error('package_name'); ?></span>
     </div>
     <div class="form-group">
       <label for="email">Package Details:</label>
-      <textarea class="form-control" placeholder="Package Details" name="package_details" ><?php echo form_error('package_details'); ?></textarea> 
+      <textarea class="form-control" placeholder="Package Details" name="package_details" ><?php echo set_value('package_details'); ?></textarea> 
+       <span class="error"><?php echo form_error('package_details'); ?></span>
     </div>
     <div class="form-group">
       <label for="email">Location:</label>
       <input type="text" class="form-control" placeholder="Location" name="location" value="<?php echo set_value('location'); ?>">
-      <?php echo form_error('location'); ?>
+      <span class="error"><?php echo form_error('location'); ?></span>
     </div>
     <div class="form-group">
       <label for="email">Days:</label>
       <input type="text" class="form-control" placeholder="Days" name="days" value="<?php echo set_value('days'); ?>">
-      <?php echo form_error('days'); ?>
+      <span class="error"><?php echo form_error('days'); ?></span>
     </div>
     <div class="form-group">
       <label for="pwd">Package Picture1</label>
@@ -259,7 +262,7 @@
       <input type="file" class="form-control" id="" placeholder="Image" name="image4">
       <?php //echo $image_error; ?>
     </div>
-    <button type="submit" class="btn btn-default" name="create_banner">Submit</button>
+    <button type="submit" class="btn btn-default" name="create_package">Submit</button>
     <div style="color:green;">
     <?php
      echo  $this->session->flashdata('message');

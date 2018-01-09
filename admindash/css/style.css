@@ -9,6 +9,9 @@ form_main {
     margin-top: 20px;
     text-transform: uppercase;
 }
+span.error {
+    color: red;
+}
 .heading {
     border-bottom: 1px solid #fcab0e;
     padding-bottom: 9px;
