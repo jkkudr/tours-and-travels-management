@@ -1252,8 +1252,8 @@ class admin extends CI_Controller{
                 $this->form_validation->set_rules('package_details', 'Package Details', 'required');
                 $this->form_validation->set_rules('location', 'Location', 'required');
                 $this->form_validation->set_rules('days', 'Days', 'required');
-                $this->form_validation->set_rules('image1', 'Image', 'required');
-                $this->form_validation->set_rules('image2', 'Image', 'required');
+                //$this->form_validation->set_rules('image1', 'Image', 'required');
+                //$this->form_validation->set_rules('image2', 'Image', 'required');
                 if ($this->form_validation->run() == FALSE)
                 {
                     
@@ -1296,19 +1296,26 @@ class admin extends CI_Controller{
                             if($_FILES['image2']['name']!="")
                             {
                                 $image_name2=rand(0,1000).$_FILES['image2']['name'];
-                                move_uploaded_file($_FILES['image2']['tmp_name'],"./packages/".$image_name1);
+                                move_uploaded_file($_FILES['image2']['tmp_name'],"./packages/".$image_name2);
                             }
                             if($_FILES['image3']['name']!="")
                             {
                                 $image_name3=rand(0,1000).$_FILES['image3']['name'];
-                                move_uploaded_file($_FILES['image3']['tmp_name'],"./packages/".$image_name1);
+                                move_uploaded_file($_FILES['image3']['tmp_name'],"./packages/".$image_name3);
                             }
                             if($_FILES['image4']['name']!="")
                             {
-                                $image_name1=rand(0,1000).$_FILES['image4']['name'];
-                                move_uploaded_file($_FILES['image4']['tmp_name'],"./packages/".$image_name1);
+                                $image_name4=rand(0,1000).$_FILES['image4']['name'];
+                                move_uploaded_file($_FILES['image4']['tmp_name'],"./packages/".$image_name4);
                             }
-
+                            $package_name=$this->db->escape_str($this->input->post('package_name'));
+                            $package_details=$this->db->escape_str($this->input->post('package_details'));
+                            $locations=$this->db->escape_str($this->input->post('location'));
+                            $days=$this->db->escape_str($this->input->post('days'));
+                            $data1=array('id'=>'','package_name'=>$package_name,'package_details'=>$package_details,'locations'=>$locations,'days'=>$days,'pic1'=>$image_name1,'pic2'=>$image_name2,'pic3'=>$image_name3,'pic4'=>$image_name4);
+                            $this->banner->package_insert($data1);
+                            $this->session->set_flashdata('message', 'Package uploaded Successfully');
+                            redirect('admin/new_package');
                         }
                 }
                 $this->load->view('admin_new_package',$data);

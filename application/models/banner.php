@@ -28,4 +28,11 @@ class banner extends CI_Model {
 	    	$query=$this->db->query("delete FROM `banners` where id='$id'");
 	    	 return TRUE;
 		}
+		public function package_insert($data)
+		{
+			if($this->db->insert('tlb_packages',$data))
+			{
+				return TRUE;
+			}
+		}
 	}

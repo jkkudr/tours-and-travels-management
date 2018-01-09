@@ -224,7 +224,7 @@
   <form action="" method="post"  enctype="multipart/form-data">
     <div class="form-group">
       <label for="email">Package Name:</label>
-      <input type="text" class="form-control" placeholder="Name" name="package_name" value="<?php echo set_value('name'); ?>">
+      <input type="text" class="form-control" placeholder="Name" name="package_name" value="<?php echo set_value('package_name'); ?>">
       <span class="error"><?php echo form_error('package_name'); ?></span>
     </div>
     <div class="form-group">
@@ -244,12 +244,12 @@
     </div>
     <div class="form-group">
       <label for="pwd">Package Picture1</label>
-      <input type="file" class="form-control" id="" placeholder="Image" name="image1">
+      <input type="file" class="form-control" id="" placeholder="Image" name="image1" required="">
       <span class="error"><?php echo $image_error1; ?><?php echo form_error('image1'); ?></span>
     </div>
     <div class="form-group">
       <label for="pwd">Package Picture2</label>
-      <input type="file" class="form-control" id="" placeholder="Image" name="image2">
+      <input type="file" class="form-control" id="" placeholder="Image" name="image2" required="">
        <span class="error"><?php echo $image_error2; ?><?php echo form_error('image2'); ?></span>
     </div>
     <div class="form-group">
