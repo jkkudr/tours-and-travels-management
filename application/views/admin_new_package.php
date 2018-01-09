@@ -1,38 +1,24 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>ADMIN || DashBoard</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url();?>admindash/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="<?php echo base_url();?>admindash/css/sb-admin.css" rel="stylesheet">
-
     <!-- Morris Charts CSS -->
     <link href="<?php echo base_url();?>admindash/css/plugins/morris.css" rel="stylesheet">
-
+    <link href="<?php echo base_url();?>admindash/css/style.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="<?php echo base_url();?>admindash/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    
-
 </head>
-
 <body>
-
     <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -43,7 +29,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">ADMIN :: DashBoard</a>
+                <a class="navbar-brand" href="">ADMIN :: Banners</a>
             </div>
             <!-- Top Menu Items -->
            <!-- <center>
@@ -168,12 +154,12 @@
                         <a href="<?php echo base_url();?>admin/user_list"><i class="fa fa-fw fa-edit"></i> User List</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url().'admin/new_package';?>"><i class="fa fa-fw fa-desktop"></i>Create Package</a>
+                        <a href="<?php echo base_url().'admin/dynamic_combobox';?>"><i class="fa fa-fw fa-desktop"></i>Create Package</a>
                     </li>
                     <li>
                         <a href="<?php echo base_url().'admin/ad_new_user'?>"><i class="fa fa-fw fa-wrench"></i>New User</a>
                     </li>
-                    <li>
+                   <li>
                         <a href="<?php echo base_url().'admin/banners'?>"><i class="fa fa-fw fa-wrench"></i>Banner</a>
                     </li>
                     
@@ -190,11 +176,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Dashboard <small>De-Active User List</small>
+                           Package Creation
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Dashboard
+                                <i class="fa fa-dashboard"></i> Package 
                             </li>
                         </ol>
                     </div>
@@ -222,50 +208,68 @@
                     <div class="col-lg-12">
                       <div class="panel panel-info">
                            <div class="panel-heading">
-                         <h3 class="panel-title"> In-Active User List</h3>
+                         <h3 class="panel-title">Pckages</h3>
                              </div>
-                <div class="panel-body">
-                    <table class="table table-condensed">
-                        <tr class="bg-success">
-        <td>Firstname</td>
-        <td>Lastname</td>
-        <td>Email</td>
-        <td>Address</td>
-        <td>Phone</td>
-        <td>Action</td>
-        
-    </tr>
-   
-<?php foreach ($res as $result){?>
-     <tr>
-         <td><?php echo $result->Firstname;?></td>
-          <td><?php echo $result->Lastname;?></td>
-           <td><?php echo $result->Email;?></td>
-            <td><?php echo $result->Phoneno;?></td>
-             <td><?php echo $result->Address;?></td>
-             <td><a href="<?php echo base_url().'admin/user_con/'.$result->uid?>" class="btn btn-primary btn-success active" role="button" onclick="return confirm('Are you sure to Active this user?')">Active</a>   </td>
-     </tr>
-<?php }?>
-    
-</table>
+                <!-- <div class="panel-body">
+                    
                    
                  </div>
-                 <div class="panel-footer">Panel footer</div>
-                </div>
-                        <div class="panel panel-default">
-                <div class="panel-body">
-                     Panel content
-                 </div>
-                 <div class="panel-footer">Panel footer</div>
-                </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-               
-                <!-- /.row -->
-
-            </div>
+                 <div class="panel-footer"></div>
+                </div> -->
+                <div class="container">
+                <div class="row">
+    <div class="col-sm-6">
+  <form action="" method="post"  enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="email">Package Name:</label>
+      <input type="text" class="form-control" placeholder="Name" name="package_name" value="<?php echo set_value('name'); ?>">
+      <?php echo form_error('name'); ?>
+    </div>
+    <div class="form-group">
+      <label for="email">Package Details:</label>
+      <textarea class="form-control" placeholder="Package Details" name="package_details" ><?php echo form_error('package_details'); ?></textarea> 
+    </div>
+    <div class="form-group">
+      <label for="email">Location:</label>
+      <input type="text" class="form-control" placeholder="Location" name="location" value="<?php echo set_value('location'); ?>">
+      <?php echo form_error('location'); ?>
+    </div>
+    <div class="form-group">
+      <label for="email">Days:</label>
+      <input type="text" class="form-control" placeholder="Days" name="days" value="<?php echo set_value('days'); ?>">
+      <?php echo form_error('days'); ?>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Package Picture1</label>
+      <input type="file" class="form-control" id="" placeholder="Image" name="image1">
+      <?php //echo $image_error; ?>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Package Picture2</label>
+      <input type="file" class="form-control" id="" placeholder="Image" name="image2">
+      <?php //echo $image_error; ?>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Package Picture3</label>
+      <input type="file" class="form-control" id="" placeholder="Image" name="image3">
+      <?php //echo $image_error; ?>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Package Picture4</label>
+      <input type="file" class="form-control" id="" placeholder="Image" name="image4">
+      <?php //echo $image_error; ?>
+    </div>
+    <button type="submit" class="btn btn-default" name="create_banner">Submit</button>
+    <div style="color:green;">
+    <?php
+     echo  $this->session->flashdata('message');
+    ?>
+    </div>
+  </form>
+  </div>
+  </div>
+</div>
+<br>
             <!-- /.container-fluid -->
 
         </div>

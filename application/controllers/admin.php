@@ -926,6 +926,7 @@ class admin extends CI_Controller{
         }
      function dynamic_combobox(){
      // retrieve the album and add to the data array
+        redirect('admin/new_package');
         $data['']= 'Names';
         $data['groups'] = $this->combobox_model->getname();
          $data['groups1'] = $this->combobox_model->getcountry();
@@ -1228,6 +1229,23 @@ class admin extends CI_Controller{
                 $ids=$this->uri->segment(3);
                 $this->banner->deletebanner($ids);
                 redirect('admin/banners');
+            }
+            else
+            {
+                $error['error']='!!You dont have persmission, please log in!!';
+                $this->load->view('login',$error);
+            }
+        } 
+        /*=================================================================*/ 
+        /*=================================================================*/
+        /*New package creation */
+        function new_package()
+        {
+            $this->load->model('banner');
+            if($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='Admin')
+            {
+                $data=array();
+                $this->load->view('admin_new_package',$data);
             }
             else
             {
