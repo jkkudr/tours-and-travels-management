@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
     <title>ADMIN || DashBoard</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url();?>admindash/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="<?php echo base_url();?>admindash/css/sb-admin.css" rel="stylesheet">
+
     <!-- Morris Charts CSS -->
     <link href="<?php echo base_url();?>admindash/css/plugins/morris.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>admindash/css/style.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="<?php echo base_url();?>admindash/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    
+
 </head>
+
 <body>
+
     <div id="wrapper">
+
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -29,7 +41,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">ADMIN :: Packages</a>
+                <a class="navbar-brand" href="<?php echo base_url().'admin/dashboard';?>">ADMIN :: DashBoard</a>
             </div>
             <!-- Top Menu Items -->
            <!-- <center>
@@ -160,14 +172,12 @@
                         <a href="<?php echo base_url().'admin/ad_new_user'?>"><i class="fa fa-fw fa-wrench"></i>New User</a>
                     </li>
                    <li>
-                        <a href="<?php echo base_url().'admin/banners'?>"><i class="fa fa-fw fa-wrench"></i>Banner</a>
-                    </li>
-                    <li>
                         <a href="<?php echo base_url().'admin/new_package'?>"><i class="fa fa-fw fa-wrench"></i>New Package</a>
                     </li>
                     <li>
                         <a href="<?php echo base_url().'admin/package_lists'?>"><i class="fa fa-fw fa-wrench"></i>Package List</a>
                     </li>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -181,11 +191,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                           Package Creation
+                            Dashboard <small>Statistics Overview</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Package 
+                                <i class="fa fa-dashboard"></i> Dashboard
                             </li>
                         </ol>
                     </div>
@@ -193,11 +203,11 @@
                 <!-- /.row -->
                
 
-               <!-- <div class="row">
-                    <form action="<?php echo base_url().'admin/search_pack';?>" method="post">
+                <div class="row">
+                    <form action="<?php echo base_url().'admin/search_usr';?>" method="post">
                          <center>
                          <table>
-                             <tr><td><input type="text" class="form-control" name="search" id="search" placeholder="Search by Package Name"></td>&nbsp;&nbsp;
+                             <tr><td><input type="text" class="form-control" name="search" id="search" placeholder="Search by firstname"></td>&nbsp;&nbsp;
  
                 <td> <button type="submit" class="btn btn-info">Search</button></td></tr>
                          </table>
@@ -212,70 +222,60 @@
                 <div class="row">
                     <div class="col-lg-12">
                       <div class="panel panel-info">
-                           <div class="panel-heading">
-                         <h3 class="panel-title">Pckages</h3>
+                           <div class="panel-heading" style="background-color: #1a237e">
+                               <h3 class="panel-title" style="color:#CCC">User List</h3>
                              </div>
-                <!-- <div class="panel-body">
+                <div class="panel-body">
                     
-                   
+                    <table class="table table-condensed">
+                <tr class="info">
+                    <td><b>Name</b></td>
+                     <td><b>Package Details</b></td>
+                      <td><b>Email</b></td>
+                       <td><b>Password</b></td>
+                        <td><b>Phone</b></td>
+                        <td><b>Address</b></td>
+                        <td><b>Gender</b></td>
+                        <td><b>Role</b></td>
+                         <td><b>Action</b></td>
+                </tr>
+                <?php
+                  foreach ($user as $row){
+                ?>
+                <tr class="success">
+                    <td><?php echo $row->Firstname; ?></td>
+                     <td><?php echo $row->Lastname; ?></td>
+                      <td><?php echo $row->Email; ?></td>
+                       <td><?php echo $row->Password; ?></td>
+                        <td><?php echo $row->Phoneno; ?></td>
+                        <td><?php echo $row->Address; ?></td>
+                        <td><?php echo $row->Gender; ?></td>
+                        <td><?php echo $row->Role; ?></td>
+                        <td><a href="<?php echo base_url().'admin/edit_user/'.$row->uid;?>" class="btn btn-primary btn-success active" role="button">EDIT</a>|<a href="<?php echo base_url().'admin/con_del/'.$row->uid;?>" class="btn btn-default btn-danger active" role="button">Delete</a></td>
+                    
+                </tr>
+                  <?php }?>
+                
+            </table>
+            
+            <?php echo $links; ?>
                  </div>
-                 <div class="panel-footer"></div>
-                </div> -->
-                <div class="container">
-                <div class="row">
-    <div class="col-sm-6">
-  <form action="" method="post"  enctype="multipart/form-data">
-    <div class="form-group">
-      <label for="email">Package Name:</label>
-      <input type="text" class="form-control" placeholder="Name" name="package_name" value="<?php echo set_value('package_name'); ?>">
-      <span class="error"><?php echo form_error('package_name'); ?></span>
-    </div>
-    <div class="form-group">
-      <label for="email">Package Details:</label>
-      <textarea class="form-control" placeholder="Package Details" name="package_details" ><?php echo set_value('package_details'); ?></textarea> 
-       <span class="error"><?php echo form_error('package_details'); ?></span>
-    </div>
-    <div class="form-group">
-      <label for="email">Location:</label>
-      <input type="text" class="form-control" placeholder="Location" name="location" value="<?php echo set_value('location'); ?>">
-      <span class="error"><?php echo form_error('location'); ?></span>
-    </div>
-    <div class="form-group">
-      <label for="email">Days:</label>
-      <input type="text" class="form-control" placeholder="Days" name="days" value="<?php echo set_value('days'); ?>">
-      <span class="error"><?php echo form_error('days'); ?></span>
-    </div>
-    <div class="form-group">
-      <label for="pwd">Package Picture1</label>
-      <input type="file" class="form-control" id="" placeholder="Image" name="image1" required="">
-      <span class="error"><?php echo $image_error1; ?><?php echo form_error('image1'); ?></span>
-    </div>
-    <div class="form-group">
-      <label for="pwd">Package Picture2</label>
-      <input type="file" class="form-control" id="" placeholder="Image" name="image2" required="">
-       <span class="error"><?php echo $image_error2; ?><?php echo form_error('image2'); ?></span>
-    </div>
-    <div class="form-group">
-      <label for="pwd">Package Picture3</label>
-      <input type="file" class="form-control" id="" placeholder="Image" name="image3">
-      <?php echo $image_error3; ?>
-    </div>
-    <div class="form-group">
-      <label for="pwd">Package Picture4</label>
-      <input type="file" class="form-control" id="" placeholder="Image" name="image4">
-      <?php echo $image_error4; ?>
-    </div>
-    <button type="submit" class="btn btn-default" name="create_package">Submit</button>
-    <div style="color:green;">
-    <?php
-     echo  $this->session->flashdata('message');
-    ?>
-    </div>
-  </form>
-  </div>
-  </div>
-</div>
-<br>
+                 <div class="panel-footer">Panel footer</div>
+                </div>
+                        <div class="panel panel-default">
+                <div class="panel-body">
+                     Panel content
+                 </div>
+                 <div class="panel-footer">Panel footer</div>
+                </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+               
+                <!-- /.row -->
+
+            </div>
             <!-- /.container-fluid -->
 
         </div>

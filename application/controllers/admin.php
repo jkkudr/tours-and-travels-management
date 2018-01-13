@@ -109,8 +109,8 @@ class admin extends CI_Controller{
          if($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='Admin')
         {
            //$data['data']='User List';
-           $this->load->library('pagination');
-        $this->load->model('admin_user_list_model');
+            $this->load->library('pagination');
+            $this->load->model('admin_user_list_model');
             $config=array();
             $config['base_url']=  base_url('admin/user_list');
             $config['total_rows']=  $this->admin_user_list_model->count_user();
@@ -1199,7 +1199,7 @@ class admin extends CI_Controller{
                         {
                             $image_name=rand(0,1000).$_FILES['image']['name'];
                             move_uploaded_file($_FILES['image']['tmp_name'],"./banners/".$image_name);
-                            $data1=array('id'=>'','name'=>$name,'banner_image'=>$image_name,'link'=>$link,'sort_order'=>$sort_order);
+                            $data1=array('name'=>$name,'banner_image'=>$image_name,'link'=>$link,'sort_order'=>$sort_order);
                             $this->banner->banner_insert($data1);
                             $this->session->set_flashdata('message', 'Banner uploaded Successfully');
                             redirect('admin/banners');
@@ -1328,6 +1328,38 @@ class admin extends CI_Controller{
         }
         function package_lists()
         {
-
+             $this->load->model('banner');
+             $data=array();
+            if($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='Admin')
+            {
+                $this->load->library('pagination');
+                $this->load->model('admin_user_list_model');
+                $config=array();
+                $config['base_url']=  base_url('admin/user_list');
+                $config['total_rows']=  $this->admin_user_list_model->count_user();
+                $config['per_page']=3;
+                $config['num_links']=3;
+               
+                $config['full_tag_open']="<ul class='pagination'";
+                $config['full_tag_close']="</ul>";
+                $config['num_tag_open']='<li>';
+                $config['num_tag_close']='</li>';
+                $config['cur_tag_open']="<li class='disabled'><li class='active'><a href='#'>";
+                $config['cur_tag_close']="<span class='sr-only'></span></a></li>";
+                $config['next_tag_open']="<li>";
+                $config['next_tagl_close']="</li>";
+                $config['prev_tag_open']="<li>";
+                $config['prev_tagl_close']="</li>";
+                $config['first_tag_open']="<li>";
+                $config['first_tag_close']="</li>";
+                $config['last_tag_open']="<li>";
+                $config['last_tag_close']="</li>";
+                $this->load->view('admin_package_list',$data);
+            }
+            else
+            {
+                $error['error']='!!You dont have persmission, please log in!!';
+                $this->load->view('login',$error);
+            }
         }
 }
