@@ -177,6 +177,9 @@
                     <li>
                         <a href="<?php echo base_url().'admin/new_package'?>"><i class="fa fa-fw fa-wrench"></i>New Package</a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url().'admin/package_lists'?>"><i class="fa fa-fw fa-wrench"></i>Package List</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

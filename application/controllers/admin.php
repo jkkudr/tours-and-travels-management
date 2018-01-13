@@ -1312,7 +1312,7 @@ class admin extends CI_Controller{
                             $package_details=$this->db->escape_str($this->input->post('package_details'));
                             $locations=$this->db->escape_str($this->input->post('location'));
                             $days=$this->db->escape_str($this->input->post('days'));
-                            $data1=array('id'=>'','package_name'=>$package_name,'package_details'=>$package_details,'locations'=>$locations,'days'=>$days,'pic1'=>$image_name1,'pic2'=>$image_name2,'pic3'=>$image_name3,'pic4'=>$image_name4);
+                            $data1=array('package_name'=>$package_name,'package_details'=>$package_details,'locations'=>$locations,'days'=>$days,'pic1'=>$image_name1,'pic2'=>$image_name2,'pic3'=>$image_name3,'pic4'=>$image_name4);
                             $this->banner->package_insert($data1);
                             $this->session->set_flashdata('message', 'Package uploaded Successfully');
                             redirect('admin/new_package');
@@ -1325,5 +1325,9 @@ class admin extends CI_Controller{
                 $error['error']='!!You dont have persmission, please log in!!';
                 $this->load->view('login',$error);
             }
+        }
+        function package_lists()
+        {
+
         }
 }
