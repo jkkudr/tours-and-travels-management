@@ -1350,7 +1350,13 @@ class admin extends CI_Controller{
                             redirect('admin/new_package');
                         }
                 }
-                $this->load->view('admin_new_package',$data);
+                //$this->load->view('admin_new_package',$data);
+                $data['menu'] = $this->load->view('admin_menu',$data, TRUE);
+                    $data['packagelist']=$this->banner->getpackagelist();
+                    $data['content']=$this->load->view('admin_package',$data,TRUE);
+                    $data['title']="Packages";
+                    $data['page_title']="Pckage List";
+                    $this->parser->parse('admin_template', $data);
             }
             else
             {

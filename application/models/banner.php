@@ -51,4 +51,14 @@ class banner extends CI_Model {
 			$this->db->update('banners',$data);
 			return  TRUE;
 		}
+		public function getpackagelist()
+		{
+			$query=$this->db->query("SELECT * FROM `tlb_packages` ORDER BY id");
+	    	$data=array();
+	    	foreach ($query->result() as $key=> $row)
+			{
+				$data[$key]=$row;
+			}
+			return $data;
+		}
 	}
