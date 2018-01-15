@@ -196,6 +196,26 @@
   });
 });
 </script>
+<script type="text/javascript">
+   $(document).ready(function($) {
+  $("#newModalForm02").validate({
+    rules: {
+      name: {
+        required: true
+      },
+      image: "required",
+      sort_order:"required"
+    },
+    messages: {
+      name: {
+        required: "Please enter some data",
+      },
+      image: "Image Field Required",
+      sort_order:"Sort Order Field Required"
+    }
+  });
+});
+</script>
   </div>
 </body>
 </html>

@@ -1243,6 +1243,32 @@ class admin extends CI_Controller{
         } 
         /*=================================================================*/ 
         /*=================================================================*/
+        function getbannerdetails()
+        {
+            $this->load->model('banner');
+            $ids=$this->uri->segment(3);
+            $arr=$this->banner->getbannerfromid($ids);
+            echo json_encode($arr);
+        }
+        /*=================================================================*/
+        /*=================================================================*/
+        function updatebanner()
+        {
+            $this->load->model('banner');
+            $name=$this->db->escape_str($this->input->post('name'));
+            $link=$this->db->escape_str($this->input->post('link'));
+            $sort_order=$this->db->escape_str($this->input->post('sort_order'));
+            $bid=$this->db->escape_str($this->input->post('bid'));
+            $image_name=rand(0,1000).$_FILES['image']['name'];
+            move_uploaded_file($_FILES['image']['tmp_name'],"./banners/".$image_name);
+            $data1=array('name'=>$name,'banner_image'=>$image_name,'link'=>$link,'sort_order'=>$sort_order);
+            $where=$bid;
+            $this->banner->banner_update($data1,$where);
+            $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Banner Updated Successfully</div>');
+            redirect('admin/banners');
+        }
+        /*==================================================================*/
+        /*==================================================================*/
         /*New package creation */
         function new_package()
         {

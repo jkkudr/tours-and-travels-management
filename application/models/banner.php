@@ -35,4 +35,20 @@ class banner extends CI_Model {
 				return TRUE;
 			}
 		}
+		public function getbannerfromid($id)
+		{
+			$query=$this->db->query("SELECT * FROM `banners` WHERE id='$id'");
+	    	$data=array();
+	    	foreach ($query->result() as $key=> $row)
+			{
+				$data[$key]=$row;
+			}
+			return $data;
+		}
+		public function banner_update($data,$where)
+		{
+			$this->db->where('id',$where);
+			$this->db->update('banners',$data);
+			return  TRUE;
+		}
 	}
