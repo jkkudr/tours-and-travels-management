@@ -1194,6 +1194,7 @@ class admin extends CI_Controller{
                         if (!in_array($_FILES['image']['type'], $types)) 
                         {
                             $data['image_error']="Upload valid image";
+                            $this->session->set_flashdata('message', '<div class="alert alert-warning"><strong>Warning!</strong> Upload Valid Image.</div>');
                         } 
                         else 
                         {
@@ -1201,12 +1202,17 @@ class admin extends CI_Controller{
                             move_uploaded_file($_FILES['image']['tmp_name'],"./banners/".$image_name);
                             $data1=array('name'=>$name,'banner_image'=>$image_name,'link'=>$link,'sort_order'=>$sort_order);
                             $this->banner->banner_insert($data1);
-                            $this->session->set_flashdata('message', 'Banner uploaded Successfully');
+                            $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Banner Uploaded Successfully</div>');
                             redirect('admin/banners');
                         } 
                     }
+                    $data=array();
+                    $data['menu'] = $this->load->view('admin_menu',$data, TRUE);
                     $data['bannerslist']=$this->banner->getbanners();
-                     $this->load->view('admin_banner_creation',$data);
+                    $data['content']=$this->load->view('admin_banner',$data,TRUE);
+                    $data['title']="Banners";
+                    $data['page_title']="Banner List";
+                    $this->parser->parse('admin_template', $data);
              }
              else if ($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='User') 
              {
