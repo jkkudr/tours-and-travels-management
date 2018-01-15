@@ -44,7 +44,7 @@
                   <td><img src="<?php echo base_url(); ?>/packages/<?php echo $value->pic1; ?>"  width="100" height="100"></td>
                   <td><img src="<?php echo base_url(); ?>/packages/<?php echo $value->pic2; ?>"  width="100" height="100"></td>
                   <td>
-                  <a class="btn btn-danger btn-block" href="banner_delete/<?php echo $value->id; ?>" onclick="return confirm('Are You Sure');">Delete</a>
+                  <a class="btn btn-danger btn-block" href="package_delete/<?php echo $value->id; ?>" onclick="return confirm('Are You Sure');">Delete</a>
                   <a class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#addMyModal02" id="edit" onclick="getbannerid('<?php echo $value->id; ?>')">Edit</a>
                   </td>
                 </tr>

@@ -1364,6 +1364,23 @@ class admin extends CI_Controller{
                 $this->load->view('login',$error);
             }
         }
+        /*========================================================================*/
+        function package_delete()
+        {
+            $this->load->model('banner');
+            if($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='Admin')
+            {
+                $ids=$this->uri->segment(3);
+                $this->banner->deletepackage($ids);
+                redirect('admin/new_package');
+            }
+            else
+            {
+                $error['error']='!!You dont have persmission, please log in!!';
+                $this->load->view('login',$error);
+            }
+        } 
+        /*========================================================================*/
         function package_lists()
         {
              $this->load->model('banner');

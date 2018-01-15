@@ -61,4 +61,9 @@ class banner extends CI_Model {
 			}
 			return $data;
 		}
+		public function deletepackage($id)
+		{
+			$query=$this->db->query("delete FROM `tlb_packages` where id='$id'");
+	    	 return TRUE;
+		}
 	}
