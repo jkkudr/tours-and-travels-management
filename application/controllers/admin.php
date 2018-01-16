@@ -1,6 +1,4 @@
 <?php
-
-
 class admin extends CI_Controller{
     //put your code here
     public function __construct() {
@@ -1233,6 +1231,7 @@ class admin extends CI_Controller{
             {
                 $ids=$this->uri->segment(3);
                 $this->banner->deletebanner($ids);
+                $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Banner Deleted Successfully</div>');
                 redirect('admin/banners');
             }
             else
