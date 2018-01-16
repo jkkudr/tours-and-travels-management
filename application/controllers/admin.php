@@ -1422,4 +1422,93 @@ class admin extends CI_Controller{
                 $this->load->view('login',$error);
             }
         }
+        function getpackagedetails()
+        {
+            $this->load->model('banner');
+            $ids=$this->uri->segment(3);
+            $arr=$this->banner->getpackagefromid($ids);
+            echo json_encode($arr);
+        }
+        function updatepackage()
+        {
+                $this->load->model('banner');
+                $data=array();
+                $data['image_error1']="";
+                $data['image_error2']="";
+                $data['image_error3']="";
+                $data['image_error4']="";
+                $this->form_validation->set_rules('package_name', 'Package Name', 'required');
+                $this->form_validation->set_rules('package_details', 'Package Details', 'required');
+                $this->form_validation->set_rules('location', 'Location', 'required');
+                $this->form_validation->set_rules('days', 'Days', 'required');
+                if ($this->form_validation->run() == FALSE)
+                {
+                    
+                }
+                else
+                {
+                        $types = array('image/jpeg', 'image/gif', 'image/png','image/jpg');
+                        $error=0;
+                        if (!in_array($_FILES['image1']['type'], $types)) 
+                        {
+                            $data['image_error1']="Upload valid image";
+                            $error++;
+                        }
+                        if (!in_array($_FILES['image2']['type'], $types)) 
+                        {
+                            $data['image_error2']="Upload valid image";
+                            $error++;
+                        }
+                        if (!in_array($_FILES['image3']['type'], $types)) 
+                        {
+                            $data['image_error3']="Upload valid image";
+                            $error++;
+                        }
+                        if (!in_array($_FILES['image4']['type'], $types)) 
+                        {
+                            $data['image_error4']="Upload valid image";
+                            $error++;
+                        }
+                        if($error==0)
+                        {
+                            $image_name1="";
+                            $image_name2="";
+                            $image_name3="";
+                            $image_name4="";
+                            if($_FILES['image1']['name']!="")
+                            {
+                                $image_name1=rand(0,1000).$_FILES['image1']['name'];
+                                move_uploaded_file($_FILES['image1']['tmp_name'],"./packages/".$image_name1);
+                            }
+                            if($_FILES['image2']['name']!="")
+                            {
+                                $image_name2=rand(0,1000).$_FILES['image2']['name'];
+                                move_uploaded_file($_FILES['image2']['tmp_name'],"./packages/".$image_name2);
+                            }
+                            if($_FILES['image3']['name']!="")
+                            {
+                                $image_name3=rand(0,1000).$_FILES['image3']['name'];
+                                move_uploaded_file($_FILES['image3']['tmp_name'],"./packages/".$image_name3);
+                            }
+                            if($_FILES['image4']['name']!="")
+                            {
+                                $image_name4=rand(0,1000).$_FILES['image4']['name'];
+                                move_uploaded_file($_FILES['image4']['tmp_name'],"./packages/".$image_name4);
+                            }
+                            $package_name=$this->db->escape_str($this->input->post('package_name'));
+                            $package_details=$this->db->escape_str($this->input->post('package_details'));
+                            $locations=$this->db->escape_str($this->input->post('location'));
+                            $days=$this->db->escape_str($this->input->post('days'));
+                            $data1=array('package_name'=>$package_name,'package_details'=>$package_details,'locations'=>$locations,'days'=>$days,'pic1'=>$image_name1,'pic2'=>$image_name2,'pic3'=>$image_name3,'pic4'=>$image_name4);
+                            $this->banner->package_update($data1);
+                            $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Package Updated Successfully</div>');
+                            redirect('admin/new_package');
+                        }
+                        else
+                        {
+                             $this->session->set_flashdata('message', '<div class="alert alert-warning"><strong>Warning!</strong> Upload Valid Image.</div>');
+                             redirect('admin/new_package');
+                        }
+                }
+        }
 }

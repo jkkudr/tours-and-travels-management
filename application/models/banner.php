@@ -66,4 +66,20 @@ class banner extends CI_Model {
 			$query=$this->db->query("delete FROM `tlb_packages` where id='$id'");
 	    	 return TRUE;
 		}
+		public function getpackagefromid($id)
+		{
+			$query=$this->db->query("SELECT * FROM `tlb_packages` WHERE id='$id'");
+	    	$data=array();
+	    	foreach ($query->result() as $key=> $row)
+			{
+				$data[$key]=$row;
+			}
+			return $data;
+		}
+		public function package_update($data,$where)
+		{
+			$this->db->where('id',$where);
+			$this->db->update('tlb_packages',$data);
+			return  TRUE;
+		}
 	}
