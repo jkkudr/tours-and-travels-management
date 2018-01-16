@@ -70,54 +70,54 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <form role="form" id="newModalForm02" method="post" action="<?php echo base_url(); ?>admin/updatebanner" enctype="multipart/form-data">
+        <form role="form" id="newModalForm03" method="post" action="" enctype="multipart/form-data">
         <input type="hidden" name="bid" id="bid">
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Name:</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="name1" name="name" placeholder="Enter Name" require/>
+              <input type="text" class="form-control" id="name1" name="package_name" placeholder="Enter Name" require/>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Details:</label>
             <div class="col-md-9">
-              <input type="file" class="form-control" id="image1" name="image" placeholder="" require>
+              <textarea class="form-control" name="package_details"></textarea>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Locations:</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="link1" name="link" placeholder="" require>
+              <input type="text" class="form-control" id="location" name="location" placeholder="" require>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Days:</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="sort_order1" name="sort_order" placeholder="" require>
+              <input type="text" class="form-control" id="days" name="days" placeholder="" require>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Picture1:</label>
             <div class="col-md-9">
-              <input type="file" class="form-control" id="image1" name="image" placeholder="" require>
+              <input type="file" class="form-control" id="image1" name="image1" placeholder="" require>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Picture2:</label>
             <div class="col-md-9">
-              <input type="file" class="form-control" id="image1" name="image" placeholder="" require>
+              <input type="file" class="form-control" id="image2" name="image2" placeholder="" require>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Picture3:</label>
             <div class="col-md-9">
-              <input type="file" class="form-control" id="image1" name="image" placeholder="" require>
+              <input type="file" class="form-control" id="image3" name="image3" placeholder="" require>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Picture4:</label>
             <div class="col-md-9">
-              <input type="file" class="form-control" id="image1" name="image" placeholder="" require>
+              <input type="file" class="form-control" id="image4" name="image4" placeholder="" require>
             </div>
           </div>
           <div class="modal-footer">

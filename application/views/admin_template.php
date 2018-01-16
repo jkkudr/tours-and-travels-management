@@ -216,6 +216,32 @@
   });
 });
 </script>
+<script type="text/javascript">
+   $(document).ready(function($) {
+  $("#newModalForm03").validate({
+    rules: {
+      package_name: {
+        required: true
+      },
+      package_details: "required",
+      location:"required",
+      days:"required",
+      image1:"required",
+      image2:"required"
+    },
+    messages: {
+      package_name: {
+        required: "Please enter some data",
+      },
+      package_details: "Package Details Field Required",
+      location:"Location Field Required",
+      days:"Days Filed Required",
+      image1:"Package Picture1 Field Required",
+      image2:"Package Picture2 Filed Required"
+    }
+  });
+});
+</script>
   </div>
 </body>
 </html>

@@ -1345,8 +1345,13 @@ class admin extends CI_Controller{
                             $days=$this->db->escape_str($this->input->post('days'));
                             $data1=array('package_name'=>$package_name,'package_details'=>$package_details,'locations'=>$locations,'days'=>$days,'pic1'=>$image_name1,'pic2'=>$image_name2,'pic3'=>$image_name3,'pic4'=>$image_name4);
                             $this->banner->package_insert($data1);
-                            $this->session->set_flashdata('message', 'Package uploaded Successfully');
+                            $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Package Uploaded Successfully</div>');
                             redirect('admin/new_package');
+                        }
+                        else
+                        {
+                             $this->session->set_flashdata('message', '<div class="alert alert-warning"><strong>Warning!</strong> Upload Valid Image.</div>');
+                             redirect('admin/new_package');
                         }
                 }
                 //$this->load->view('admin_new_package',$data);
