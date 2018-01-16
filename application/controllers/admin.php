@@ -1371,6 +1371,7 @@ class admin extends CI_Controller{
             {
                 $ids=$this->uri->segment(3);
                 $this->banner->deletepackage($ids);
+                $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Package Deleted Successfully</div>');
                 redirect('admin/new_package');
             }
             else
