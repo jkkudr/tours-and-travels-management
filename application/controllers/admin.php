@@ -1,6 +1,4 @@
 <?php
-
-
 class admin extends CI_Controller{
     //put your code here
     public function __construct() {
@@ -1194,6 +1192,7 @@ class admin extends CI_Controller{
                         if (!in_array($_FILES['image']['type'], $types)) 
                         {
                             $data['image_error']="Upload valid image";
+                            $this->session->set_flashdata('message', '<div class="alert alert-warning"><strong>Warning!</strong> Upload Valid Image.</div>');
                         } 
                         else 
                         {
@@ -1201,12 +1200,17 @@ class admin extends CI_Controller{
                             move_uploaded_file($_FILES['image']['tmp_name'],"./banners/".$image_name);
                             $data1=array('name'=>$name,'banner_image'=>$image_name,'link'=>$link,'sort_order'=>$sort_order);
                             $this->banner->banner_insert($data1);
-                            $this->session->set_flashdata('message', 'Banner uploaded Successfully');
+                            $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Banner Uploaded Successfully</div>');
                             redirect('admin/banners');
                         } 
                     }
+                    $data=array();
+                    $data['menu'] = $this->load->view('admin_menu',$data, TRUE);
                     $data['bannerslist']=$this->banner->getbanners();
-                     $this->load->view('admin_banner_creation',$data);
+                    $data['content']=$this->load->view('admin_banner',$data,TRUE);
+                    $data['title']="Banners";
+                    $data['page_title']="Banner List";
+                    $this->parser->parse('admin_template', $data);
              }
              else if ($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='User') 
              {
@@ -1227,6 +1231,7 @@ class admin extends CI_Controller{
             {
                 $ids=$this->uri->segment(3);
                 $this->banner->deletebanner($ids);
+                $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Banner Deleted Successfully</div>');
                 redirect('admin/banners');
             }
             else
@@ -1237,6 +1242,32 @@ class admin extends CI_Controller{
         } 
         /*=================================================================*/ 
         /*=================================================================*/
+        function getbannerdetails()
+        {
+            $this->load->model('banner');
+            $ids=$this->uri->segment(3);
+            $arr=$this->banner->getbannerfromid($ids);
+            echo json_encode($arr);
+        }
+        /*=================================================================*/
+        /*=================================================================*/
+        function updatebanner()
+        {
+            $this->load->model('banner');
+            $name=$this->db->escape_str($this->input->post('name'));
+            $link=$this->db->escape_str($this->input->post('link'));
+            $sort_order=$this->db->escape_str($this->input->post('sort_order'));
+            $bid=$this->db->escape_str($this->input->post('bid'));
+            $image_name=rand(0,1000).$_FILES['image']['name'];
+            move_uploaded_file($_FILES['image']['tmp_name'],"./banners/".$image_name);
+            $data1=array('name'=>$name,'banner_image'=>$image_name,'link'=>$link,'sort_order'=>$sort_order);
+            $where=$bid;
+            $this->banner->banner_update($data1,$where);
+            $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Banner Updated Successfully</div>');
+            redirect('admin/banners');
+        }
+        /*==================================================================*/
+        /*==================================================================*/
         /*New package creation */
         function new_package()
         {
@@ -1314,11 +1345,22 @@ class admin extends CI_Controller{
                             $days=$this->db->escape_str($this->input->post('days'));
                             $data1=array('package_name'=>$package_name,'package_details'=>$package_details,'locations'=>$locations,'days'=>$days,'pic1'=>$image_name1,'pic2'=>$image_name2,'pic3'=>$image_name3,'pic4'=>$image_name4);
                             $this->banner->package_insert($data1);
-                            $this->session->set_flashdata('message', 'Package uploaded Successfully');
+                            $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Package Uploaded Successfully</div>');
                             redirect('admin/new_package');
                         }
+                        else
+                        {
+                             $this->session->set_flashdata('message', '<div class="alert alert-warning"><strong>Warning!</strong> Upload Valid Image.</div>');
+                             redirect('admin/new_package');
+                        }
                 }
-                $this->load->view('admin_new_package',$data);
+                //$this->load->view('admin_new_package',$data);
+                $data['menu'] = $this->load->view('admin_menu',$data, TRUE);
+                    $data['packagelist']=$this->banner->getpackagelist();
+                    $data['content']=$this->load->view('admin_package',$data,TRUE);
+                    $data['title']="Packages";
+                    $data['page_title']="Pckage List";
+                    $this->parser->parse('admin_template', $data);
             }
             else
             {
@@ -1326,6 +1368,24 @@ class admin extends CI_Controller{
                 $this->load->view('login',$error);
             }
         }
+        /*========================================================================*/
+        function package_delete()
+        {
+            $this->load->model('banner');
+            if($this->session->userdata('is_logged_in')&& $this->session->userdata('role')=='Admin')
+            {
+                $ids=$this->uri->segment(3);
+                $this->banner->deletepackage($ids);
+                $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Package Deleted Successfully</div>');
+                redirect('admin/new_package');
+            }
+            else
+            {
+                $error['error']='!!You dont have persmission, please log in!!';
+                $this->load->view('login',$error);
+            }
+        } 
+        /*========================================================================*/
         function package_lists()
         {
              $this->load->model('banner');
@@ -1361,5 +1421,94 @@ class admin extends CI_Controller{
                 $error['error']='!!You dont have persmission, please log in!!';
                 $this->load->view('login',$error);
             }
+        }
+        function getpackagedetails()
+        {
+            $this->load->model('banner');
+            $ids=$this->uri->segment(3);
+            $arr=$this->banner->getpackagefromid($ids);
+            echo json_encode($arr);
+        }
+        function updatepackage()
+        {
+                $this->load->model('banner');
+                $data=array();
+                $data['image_error1']="";
+                $data['image_error2']="";
+                $data['image_error3']="";
+                $data['image_error4']="";
+                $this->form_validation->set_rules('package_name', 'Package Name', 'required');
+                $this->form_validation->set_rules('package_details', 'Package Details', 'required');
+                $this->form_validation->set_rules('location', 'Location', 'required');
+                $this->form_validation->set_rules('days', 'Days', 'required');
+                if ($this->form_validation->run() == FALSE)
+                {
+                    
+                }
+                else
+                {
+                        $types = array('image/jpeg', 'image/gif', 'image/png','image/jpg');
+                        $error=0;
+                        if (!in_array($_FILES['image1']['type'], $types)) 
+                        {
+                            $data['image_error1']="Upload valid image";
+                            $error++;
+                        }
+                        if (!in_array($_FILES['image2']['type'], $types)) 
+                        {
+                            $data['image_error2']="Upload valid image";
+                            $error++;
+                        }
+                        if (!in_array($_FILES['image3']['type'], $types)) 
+                        {
+                            $data['image_error3']="Upload valid image";
+                            $error++;
+                        }
+                        if (!in_array($_FILES['image4']['type'], $types)) 
+                        {
+                            $data['image_error4']="Upload valid image";
+                            $error++;
+                        }
+                        if($error==0)
+                        {
+                            $image_name1="";
+                            $image_name2="";
+                            $image_name3="";
+                            $image_name4="";
+                            if($_FILES['image1']['name']!="")
+                            {
+                                $image_name1=rand(0,1000).$_FILES['image1']['name'];
+                                move_uploaded_file($_FILES['image1']['tmp_name'],"./packages/".$image_name1);
+                            }
+                            if($_FILES['image2']['name']!="")
+                            {
+                                $image_name2=rand(0,1000).$_FILES['image2']['name'];
+                                move_uploaded_file($_FILES['image2']['tmp_name'],"./packages/".$image_name2);
+                            }
+                            if($_FILES['image3']['name']!="")
+                            {
+                                $image_name3=rand(0,1000).$_FILES['image3']['name'];
+                                move_uploaded_file($_FILES['image3']['tmp_name'],"./packages/".$image_name3);
+                            }
+                            if($_FILES['image4']['name']!="")
+                            {
+                                $image_name4=rand(0,1000).$_FILES['image4']['name'];
+                                move_uploaded_file($_FILES['image4']['tmp_name'],"./packages/".$image_name4);
+                            }
+                            $package_name=$this->db->escape_str($this->input->post('package_name'));
+                            $package_details=$this->db->escape_str($this->input->post('package_details'));
+                            $locations=$this->db->escape_str($this->input->post('location'));
+                            $days=$this->db->escape_str($this->input->post('days'));
+                            $data1=array('package_name'=>$package_name,'package_details'=>$package_details,'locations'=>$locations,'days'=>$days,'pic1'=>$image_name1,'pic2'=>$image_name2,'pic3'=>$image_name3,'pic4'=>$image_name4);
+                            $this->banner->package_update($data1);
+                            $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Package Updated Successfully</div>');
+                            redirect('admin/new_package');
+                        }
+                        else
+                        {
+                             $this->session->set_flashdata('message', '<div class="alert alert-warning"><strong>Warning!</strong> Upload Valid Image.</div>');
+                             redirect('admin/new_package');
+                        }
+                }
         }
 }

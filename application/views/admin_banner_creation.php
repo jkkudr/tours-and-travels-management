@@ -16,6 +16,10 @@
     <link href="<?php echo base_url();?>admindash/css/style.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="<?php echo base_url();?>admindash/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/select/1.2.4/css/select.bootstrap.min.css" rel="stylesheet">
+    <link href="https://editor.datatables.net/extensions/Editor/css/editor.bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="wrapper">
@@ -205,6 +209,7 @@
                 <!-- /.row -->
 
                 <div class="row">
+
                     <div class="col-lg-12">
                       <div class="panel panel-info">
                            <div class="panel-heading">
@@ -300,11 +305,24 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo base_url();?>admindash/js/bootstrap.min.js"></script>
-
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<!-- Bootstrap -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
     <!-- Morris Charts JavaScript -->
     <script src="<?php echo base_url();?>admindash/js/plugins/morris/raphael.min.js"></script>
     <script src="<?php echo base_url();?>admindash/js/plugins/morris/morris.min.js"></script>
     <script src="<?php echo base_url();?>admindash/js/plugins/morris/morris-data.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+    var table = $('#example').DataTable( {
+        lengthChange: false,
+        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+    } );
+ 
+    table.buttons().container()
+        .appendTo( '#example_wrapper .col-sm-6:eq(0)' );
+} );
+    </script>
 
 </body>
 
