@@ -1303,7 +1303,7 @@ class admin extends CI_Controller{
                             $data['image_error2']="Upload valid image";
                             $error++;
                         }
-                        if (!in_array($_FILES['image3']['type'], $types)) 
+                        /*if (!in_array($_FILES['image3']['type'], $types)) 
                         {
                             $data['image_error3']="Upload valid image";
                             $error++;
@@ -1312,7 +1312,7 @@ class admin extends CI_Controller{
                         {
                             $data['image_error4']="Upload valid image";
                             $error++;
-                        }
+                        }*/
                         if($error==0)
                         {
                             $image_name1="";
@@ -1459,16 +1459,16 @@ class admin extends CI_Controller{
                             $data['image_error2']="Upload valid image";
                             $error++;
                         }
-                        if (!in_array($_FILES['image3']['type'], $types)) 
-                        {
-                            $data['image_error3']="Upload valid image";
-                            $error++;
-                        }
-                        if (!in_array($_FILES['image4']['type'], $types)) 
-                        {
-                            $data['image_error4']="Upload valid image";
-                            $error++;
-                        }
+                        // if (!in_array($_FILES['image3']['type'], $types)) 
+                        // {
+                        //     $data['image_error3']="Upload valid image";
+                        //     $error++;
+                        // }
+                        // if (!in_array($_FILES['image4']['type'], $types)) 
+                        // {
+                        //     $data['image_error4']="Upload valid image";
+                        //     $error++;
+                        // }
                         if($error==0)
                         {
                             $image_name1="";

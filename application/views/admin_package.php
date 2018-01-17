@@ -111,13 +111,13 @@
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Picture3:</label>
             <div class="col-md-9">
-              <input type="file" class="form-control" id="image3" name="image3" placeholder="" require>
+              <input type="file" class="form-control" id="image3" name="image3" placeholder="" >
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Picture4:</label>
             <div class="col-md-9">
-              <input type="file" class="form-control" id="image4" name="image4" placeholder="" require>
+              <input type="file" class="form-control" id="image4" name="image4" placeholder="" >
             </div>
           </div>
           <div class="modal-footer">
@@ -172,19 +172,19 @@
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Picture2:</label>
             <div class="col-md-9">
-              <input type="file" class="form-control" id="image2" name="image2" placeholder="" required>
+              <input type="file" class="form-control" id="image2" name="image2" placeholder="" required="">
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Picture3:</label>
             <div class="col-md-9">
-              <input type="file" class="form-control" id="image3" name="image3" placeholder="" require>
+              <input type="file" class="form-control" id="image3" name="image3" placeholder="" >
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Picture4:</label>
             <div class="col-md-9">
-              <input type="file" class="form-control" id="image4" name="image4" placeholder="" require>
+              <input type="file" class="form-control" id="image4" name="image4" placeholder="" >
             </div>
           </div>
           <div class="modal-footer">
