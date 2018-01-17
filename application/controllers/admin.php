@@ -1449,16 +1449,16 @@ class admin extends CI_Controller{
                 {
                         $types = array('image/jpeg', 'image/gif', 'image/png','image/jpg');
                         $error=0;
-                        if (!in_array($_FILES['image1']['type'], $types)) 
-                        {
-                            $data['image_error1']="Upload valid image";
-                            $error++;
-                        }
-                        if (!in_array($_FILES['image2']['type'], $types)) 
-                        {
-                            $data['image_error2']="Upload valid image";
-                            $error++;
-                        }
+                        // if (!in_array($_FILES['image1']['type'], $types)) 
+                        // {
+                        //     $data['image_error1']="Upload valid image";
+                        //     $error++;
+                        // }
+                        // if (!in_array($_FILES['image2']['type'], $types)) 
+                        // {
+                        //     $data['image_error2']="Upload valid image";
+                        //     $error++;
+                        // }
                         // if (!in_array($_FILES['image3']['type'], $types)) 
                         // {
                         //     $data['image_error3']="Upload valid image";
@@ -1471,36 +1471,42 @@ class admin extends CI_Controller{
                         // }
                         if($error==0)
                         {
-                            $image_name1="";
-                            $image_name2="";
-                            $image_name3="";
-                            $image_name4="";
+                            // $image_name1="";
+                            // $image_name2="";
+                            // $image_name3="";
+                            // $image_name4="";
+                            $package_name=$this->db->escape_str($this->input->post('package_name'));
+                            $package_details=$this->db->escape_str($this->input->post('package_details'));
+                            $locations=$this->db->escape_str($this->input->post('location'));
+                            $bid=$this->db->escape_str($this->input->post('bid'));
+                            $days=$this->db->escape_str($this->input->post('days'));
+                            $where=$bid;
+                            $data1=array('package_name'=>$package_name,'package_details'=>$package_details,'locations'=>$locations,'days'=>$days);
                             if($_FILES['image1']['name']!="")
                             {
                                 $image_name1=rand(0,1000).$_FILES['image1']['name'];
                                 move_uploaded_file($_FILES['image1']['tmp_name'],"./packages/".$image_name1);
+                                $data1['pic1']=$image_name1;
                             }
                             if($_FILES['image2']['name']!="")
                             {
                                 $image_name2=rand(0,1000).$_FILES['image2']['name'];
                                 move_uploaded_file($_FILES['image2']['tmp_name'],"./packages/".$image_name2);
+                                $data1['pic2']=$image_name2;
                             }
                             if($_FILES['image3']['name']!="")
                             {
                                 $image_name3=rand(0,1000).$_FILES['image3']['name'];
                                 move_uploaded_file($_FILES['image3']['tmp_name'],"./packages/".$image_name3);
+                                $data1['pic3']=$image_name3;
                             }
                             if($_FILES['image4']['name']!="")
                             {
                                 $image_name4=rand(0,1000).$_FILES['image4']['name'];
                                 move_uploaded_file($_FILES['image4']['tmp_name'],"./packages/".$image_name4);
+                                $data1['pic4']=$image_name4;
                             }
-                            $package_name=$this->db->escape_str($this->input->post('package_name'));
-                            $package_details=$this->db->escape_str($this->input->post('package_details'));
-                            $locations=$this->db->escape_str($this->input->post('location'));
-                            $days=$this->db->escape_str($this->input->post('days'));
-                            $data1=array('package_name'=>$package_name,'package_details'=>$package_details,'locations'=>$locations,'days'=>$days,'pic1'=>$image_name1,'pic2'=>$image_name2,'pic3'=>$image_name3,'pic4'=>$image_name4);
-                            $this->banner->package_update($data1);
+                            $this->banner->package_update($data1,$where);
                             $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Success!</strong> Package Updated Successfully</div>');
                             redirect('admin/new_package');
                         }

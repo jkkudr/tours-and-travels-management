@@ -71,7 +71,7 @@
       </div>
       <div class="modal-body">
         <form role="form" id="newModalForm03" method="post" action="" enctype="multipart/form-data">
-        <input type="hidden" name="bid" id="bid">
+        <!-- <input type="hidden" name="bid" id="bid"> -->
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Name:</label>
             <div class="col-md-9">
@@ -166,13 +166,13 @@
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Picture1:</label>
             <div class="col-md-9">
-              <input type="file" class="form-control" id="image1" name="image1" placeholder="" required="">
+              <input type="file" class="form-control" id="image1" name="image1" placeholder="">
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-3" for="email">Package Picture2:</label>
             <div class="col-md-9">
-              <input type="file" class="form-control" id="image2" name="image2" placeholder="" required="">
+              <input type="file" class="form-control" id="image2" name="image2" placeholder="">
             </div>
           </div>
           <div class="form-group">
